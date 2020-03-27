@@ -1,23 +1,24 @@
-#include "PCF8574.h"
+#include "DHT.h"
 
-//provide expander i2c address as constructor parameter
-PCF8574 pcf8574();
+#define DHTPIN 2     // pin In PCF8574 DHT is connected in
+#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+#define PCF8574_ADDRESS 0x02
+
+DHT dht(DHTPIN, DHTTYPE,PCF8574_ADDRESS);
+
 
 void setup() {
-  Serial.begin(9600);
-  //set expander P0 to output
-  pcf8574.pinMode(P0,OUTPUT);
-  //set i2c connection
-  pcf8574.begin();
+  dht.begin();
+ 
 
 }
 
 void loop() {
-  //set P0 to HIGH state
-  pcf8574.digitalWrite(P0,HIGH);
-  delay(1000);
-  //set P0 to LOW state
-  pcf8574.digitalWrite(P0,LOW);
-  
+  //Read humidity value
+   float h = dht.readHumidity();
+  // Read temperature as Celsius (the default)
+  float t = dht.readTemperature();
+  // Compute heat index in Celsius (isFahreheit = false)
+  float hic = dht.computeHeatIndex(t, h, false);
 
 }
