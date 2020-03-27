@@ -256,7 +256,8 @@ bool DHT::read(bool force) {
 
   // Go into high impedence state to let pull-up raise data line level and
   // start the reading process.
-  pcf8574.pinMode(_pin, INPUT_PULLUP);
+  pcf8574.pinMode(_pin, INPUT);
+  pcf8574.digitalWrite(_pin, HIGH);
   delay(1);
 
   // First set data line low for a period according to sensor type
@@ -276,7 +277,8 @@ bool DHT::read(bool force) {
   uint32_t cycles[80];
   {
     // End the start signal by setting data line high for 40 microseconds.
-    pcf8574.pinMode(_pin, INPUT_PULLUP);
+    pcf8574.pinMode(_pin, INPUT);
+    pcf8574.digitalWrite(_pin, HIGH);
 
     // Delay a moment to let sensor pull data line low.
     delayMicroseconds(pullTime);
