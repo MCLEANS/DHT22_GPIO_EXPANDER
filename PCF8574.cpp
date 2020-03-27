@@ -96,7 +96,9 @@ void PCF8574::begin(){
 	lastReadMillis = millis();
 }
 
-
+void PCF8574::setAddress(uint8_t address){
+	_address = address;
+}
 
 /**
  * Set if fin is OUTPUT or INPUT
