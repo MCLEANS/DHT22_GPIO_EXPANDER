@@ -64,7 +64,7 @@ public:
 
 	PCF8574(uint8_t address, uint8_t interruptPin,  void (*interruptFunction)() );
 	PCF8574(uint8_t address, uint8_t sda, uint8_t scl, uint8_t interruptPin,  void (*interruptFunction)());
-	//void setAddress(uint8_t address);
+	void setAddress(uint8_t address);
 	void begin();
 	void pinMode(uint8_t pin, uint8_t mode);
 
