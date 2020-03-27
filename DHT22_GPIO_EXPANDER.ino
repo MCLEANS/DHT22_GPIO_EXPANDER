@@ -9,9 +9,7 @@ DHT dht(DHTPIN, DHTTYPE,PCF8574_ADDRESS);
 
 void setup() {
   dht.begin();
- 
-
-}
+ }
 
 void loop() {
   //Read humidity value
